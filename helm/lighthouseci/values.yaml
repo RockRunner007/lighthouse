@@ -1,7 +1,7 @@
 # Default values for lighthouseci.
 
 cluster: ""
-namespace: "devops-lighthouse"
+namespace: "lighthouse"
 
 server:
   replicaCount: 1
