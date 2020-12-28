@@ -1,4 +1,4 @@
-cluster: "azprod-k8s-in01"
+cluster: "test"
 
 server:
   replicaCount: 1
