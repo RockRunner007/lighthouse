@@ -1,0 +1,14 @@
+#https://github.com/GoogleChrome/lighthouse-ci/blob/master/docs/recipes/docker-server/kubernetes/lhci-data-claim.yml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lhci-data-claim
+  namespace: devops-lighthouse
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: managed-premium
+  resources:
+    requests:
+      storage: 50Gi

@@ -1,0 +1,12 @@
+# Default values for lighthouseci.
+
+cluster: ""
+namespace: "devops-lighthouse"
+
+server:
+  replicaCount: 1
+
+  image:
+    repository: docker.io/patrickhulce/lhci-server
+    tag: v0.6.1
+    pullPolicy: IfNotPresent
