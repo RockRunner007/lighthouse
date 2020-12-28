@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: lhci
     app.kubernetes.io/version: "1.0"
   name: lhci-statefulset
-  namespace: devops-lighthouse
+  namespace: lighthouse
 spec:
   serviceName: lhci-prod
   replicas: 1
