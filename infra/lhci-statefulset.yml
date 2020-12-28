@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/instance: lhci-prod
+    app.kubernetes.io/managed-by: Tiller
+    app.kubernetes.io/name: lhci
+    app.kubernetes.io/version: "1.0"
+  name: lhci-statefulset
+  namespace: devops-lighthouse
+spec:
+  serviceName: lhci-prod
+  replicas: 1
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: lhci-prod
+      app.kubernetes.io/name: lhci  
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: lhci-prod
+        app.kubernetes.io/name: lhci
+    spec:
+      containers:
+      - name: lhci-server
+        image: docker.io/patrickhulce/lhci-server:0.6.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: '/data'
+            name: lhci-data-volume
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: azure-container-registry
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: lhci-data-volume
+          persistentVolumeClaim:
+            claimName: lhci-data-claim
